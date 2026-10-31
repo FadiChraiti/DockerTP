@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/myapp
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    restart: always
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
